@@ -196,6 +196,8 @@ QBCore.Functions.CreateCallback("sys-multicharacter:server:getSkin", function(_,
     if result[1] ~= nil then
         if Config.Clothing == 'qb-clothing' then
             cb(result[1].model, result[1].skin)
+        elseif Config.Clothing == 'bl_appearance' then
+            cb(json.decode(result[1].skin))
         elseif Config.Clothing == 'illenium-appearance' then
             cb(json.decode(result[1].skin))
         else

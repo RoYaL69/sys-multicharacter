@@ -111,6 +111,8 @@ function SpawnPlayerPed(k, name, citizenid)
         if skinData == nil then return end
         if Config.Clothing == 'qb-clothing' then
             model = skinData ~= nil and tonumber(skinData) or false
+        elseif Config.Clothing == 'bl_appearance' then
+            model = skinData.model
         elseif Config.Clothing == 'illenium-appearance' then
             model = skinData.model
         else
@@ -138,7 +140,9 @@ function SpawnPlayerPed(k, name, citizenid)
                 SetEntityAsMissionEntity(character, true)
                 PlaceObjectOnGroundProperly(character)
                 SetBlockingOfNonTemporaryEvents(character, true)
-                if Config.Clothing == 'illenium-appearance' then
+                if Config.Clothing == 'bl_appearance' then
+                    exports['bl_appearance']:setPedAppearance(character, skinData)
+                elseif Config.Clothing == 'illenium-appearance' then
                     exports['illenium-appearance']:setPedAppearance(character, skinData)
                 elseif Config.Clothing == 'qb-clothing' then
                     data = json.decode(data)

@@ -1,7 +1,7 @@
 Config = {}
 Config.Color = "#4ade80"
 Config.EnableDeleteButton = true -- Define if the player can delete the character or not
-Config.Clothing = 'qb-clothing' -- qb-clothing or 'illenium-appearance'
+Config.Clothing = 'bl_appearance' -- qb-clothing or 'illenium-appearance' or 'bl_appearance'
 Config.DefaultNumberOfCharacters = 5 -- Define maximum amount of default characters, Max 4 //ST4LTH
 Config.PlayersNumberOfCharacters = {
     -- Define maximum amount of player characters by rockstar license (you can find this license in your server's database in the player table)
