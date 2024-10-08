@@ -14,6 +14,7 @@ client_script 'client/main.lua'
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
     '@qbx_properties/config/shared.lua',
+    'config.lua',
     'server/main.lua'
 }
 
