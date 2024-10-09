@@ -113,7 +113,6 @@ RegisterNetEvent('sys-multicharacter:server:createCharacter', function(data)
     newData.charinfo = data
     if QBCore.Player.Login(src, false, newData) then
         if config.characters.startingApartment then
-            TriggerEvent('apartments:client:setupSpawnUI', newData)
             local randbucket = (GetPlayerPed(src) .. math.random(1, 999))
             SetPlayerRoutingBucket(src, randbucket)
             print('^2[qb-core]^7 ' .. GetPlayerName(src) .. ' has succesfully loaded!')
@@ -121,6 +120,7 @@ RegisterNetEvent('sys-multicharacter:server:createCharacter', function(data)
             loadHouseData(src)
             TriggerClientEvent("sys-multicharacter:client:closeNUI", src)
             TriggerClientEvent('apartments:client:setupSpawnUI', src, newData)
+            -- TriggerEvent('apartments:client:setupSpawnUI', newData)
             GiveStarterItems(src)
         else
             print('^2[qb-core]^7 ' .. GetPlayerName(src) .. ' has succesfully loaded!')
