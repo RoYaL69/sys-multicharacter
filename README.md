@@ -1,3 +1,9 @@
+## I am not the Creator of that source, i just want to make it compatible with resources that i use.
+The original resource can be found here "https://www.sysscripts.com/products/6336260"
+
+# TODO
+1. qb_apartments is replaced by qbx_apartments but qbx_properties replaces qbx_apartments
+2. add support for bl_appearance
 
 # SyS-Multicharacter
 
