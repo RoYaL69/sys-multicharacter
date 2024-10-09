@@ -28,33 +28,37 @@ end
 local function loadHouseData(src)
     local HouseGarages = {}
     local Houses = {}
-    local result = MySQL.query.await('SELECT * FROM houselocations', {})
+    local result = MySQL.query.await('SELECT * FROM properties', {})
+    
     if result[1] ~= nil then
         for _, v in pairs(result) do
             local owned = false
-            if tonumber(v.owned) == 1 then
+            if v.owner ~= nil and v.owner ~= "" then
                 owned = true
             end
-            local garage = v.garage ~= nil and json.decode(v.garage) or {}
-            Houses[v.name] = {
+            local garageConfig = Garages[v.property_name]  -- Hier die Garagenkonfiguration aus qbx_garages holen
+            local garage = garageConfig and garageConfig.vehicleType or {}  -- Beispiel für Garage, Fahrzeugtyp verwenden
+            Houses[v.property_name] = {
                 coords = json.decode(v.coords),
                 owned = owned,
                 price = v.price,
                 locked = true,
-                adress = v.label,
-                tier = v.tier,
+                adress = v.property_name,
+                tier = v.tier or 1,  -- Falls `tier` existiert, ansonsten Standardwert
                 garage = garage,
-                decorations = {}
+                decorations = {}  -- Falls Dekorationen aus anderen Feldern benötigt werden
             }
-            HouseGarages[v.name] = {
-                label = v.label,
+            HouseGarages[v.property_name] = {
+                label = v.property_name,
                 takeVehicle = garage
             }
         end
     end
+    
     TriggerClientEvent("qb-garages:client:houseGarageConfig", src, HouseGarages)
     TriggerClientEvent("qb-houses:client:setHouseConfig", src, Houses)
 end
+
 
 -- Commands
 
